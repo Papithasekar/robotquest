@@ -36,7 +36,7 @@ function main() {
 }
 
 
-function renderBoard() {
+function renderBoard(board) {
     console.log('\n ' + moves + ':');
     board[robot.y][robot.x] = 'R';
 
@@ -90,7 +90,7 @@ function move() {
     }
 
     moves += 1;
-    renderBoard();
+    renderBoard(board);
 }
 
 function turn(turnDirection) {
@@ -134,9 +134,9 @@ function sleep(delay) {
     while (new Date().getTime() < start + delay);
 }
 
-
 {
     // This is where the program starts.
-    main();
+    console.log("Her er [0][3]: " + board[0][3]);
+    //main();
 }
 

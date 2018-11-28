@@ -19,11 +19,46 @@ const trailIndicators = {
 
 
 function turn(robot, step, turns) {
-    turns += 1;
-    return turns;
+
+    // robot.head = 'right';
+    if ((robot.head === 'up') && (step === 'turn-right' ))
+    {
+        robot.head = 'right';
+    }
+    else if((robot.head === 'right') && (step === 'turn-right'))
+    {
+        robot.head = 'down';
+    }
+    else if((robot.head === 'down') && (step === 'turn-right'))
+    {
+        robot.head = 'left';
+    }
+    else if((robot.head === 'left') && (step === 'turn-right'))
+    {
+        robot.head = 'up';
+    }
+    else if((robot.head === 'up') && (step === 'turn-left'))
+    {
+        robot.head = 'left'
+    }
+    else if((robot.head === 'left') && (step === 'turn-left'))
+    {
+        robot.head = 'down'
+    }
+    else if((robot.head === 'down') && (step === 'turn-left'))
+    {
+        robot.head = 'right'
+    }
+    else if((robot.head === 'right') && (step === 'turn-left'))
+    {
+        robot.head = 'up'
+    }
+    return ++turns ;
+
 }
 
 function move(robot, maxLineIndex, maxColumnIndex, nbOfMoves) {
+    robot.head = 'right';
     nbOfMoves += 1;
     return nbOfMoves;
 }
