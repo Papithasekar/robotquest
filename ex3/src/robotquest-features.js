@@ -1,5 +1,5 @@
 module.exports =
-    {turn, move, updateBoard, checkIfFlagReached, cloneRobot};
+    {turn, move, updateBoard, checkIfFlagReached, cloneRobot,treeReached,checkIfTreeReached,waterReached,checkIfWaterReached};
 
 const SYMBOLS = {
     robot: setReverse('R'),
@@ -16,6 +16,67 @@ const trailIndicators = {
     up: setBright('↑'),
     down: setBright('↓')
 };
+
+//Hackathon task1
+
+function treeReached(robot, maxLineIndex, maxColumnIndex, treePosition) {
+
+    let isTreeReached = false;
+
+    console.log("robot.column = "+robot.position.column);
+    console.log("treeposition.column = "+treePosition.position.column);
+
+    if(((robot.position.column === treePosition.position.column ) && (robot.position.line === treePosition.position.line))
+           ||
+             ((robot.position.column === treePosition.position1.column ) && (robot.position.line === treePosition.position1.line))
+           ||
+              ((robot.position.column === treePosition.position2.column ) && (robot.position.line === treePosition.position2.line)) )
+    {
+        isTreeReached = true;
+        console.log("Opps you have reached tree!!")
+
+    }
+
+
+    return isTreeReached;
+}
+
+function checkIfTreeReached(robot, board) {
+    const cell = board[robot.position.line][robot.position.column];
+    let treeReached = cell === SYMBOLS.tree || cell == 'T';
+
+    return treeReached;
+}
+
+//task 3
+
+function waterReached(robot, maxLineIndex, maxColumnIndex, waterPosition) {
+
+    let isWaterReached = false;
+
+    console.log("robot.column = "+robot.position.column);
+    console.log("treeposition.column = "+waterPosition.position.column);
+
+
+
+    if((robot.position.column === waterPosition.position.column ) && (robot.position.line === waterPosition.position.line))
+    {
+        isWaterReached = true;
+        console.log("Opps you have reached water!!")
+
+    }
+
+
+    return isWaterReached;
+}
+
+function checkIfWaterReached(robot, board) {
+    const cell = board[robot.position.line][robot.position.column];
+    let waterReached = cell === SYMBOLS.water || cell == 'W';
+
+    return waterReached;
+}
+
 
 
 function turn(robot, step, turns) {
@@ -81,6 +142,7 @@ function checkIfFlagReached(robot, board) {
 
     return flagReached;
 }
+
 
 // utils
 function cloneRobot(robot) {
